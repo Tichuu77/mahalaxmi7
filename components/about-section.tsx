@@ -27,7 +27,7 @@ export default function AboutSection() {
   }, [])
 
   const animateCounters = () => {
-    const targets = { projects: 50, clients: 1000, years: 20, sqft: 500 }
+    const targets = { projects: 67, clients: 17000, years: 20, sqft: 500 }
     const duration = 2000
     const steps = 60
     const increment = duration / steps

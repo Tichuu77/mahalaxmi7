@@ -19,7 +19,7 @@ const projects = {
       title: "Mahalaxmi Nagar-31",
       image: "/ongoingProject8.webp",
       description: "Ready to move residential layout on Besa-Pipla Road, opposite Zudio & Croma. Prime location with up to 90% bank finance.",
-      location: "MOUZA - PIPLA",
+      location: "MOUZA - BESA",
       status: "ongoing"
     },
     {
@@ -27,7 +27,7 @@ const projects = {
       title: "Mahalaxmi Nagar-39",
       image: "/ongoingProject5.webp",
       description: "New project on Katol Road, Fetri (Chicholi), touching Outer Ring Road. Fully developed NMRDA & RL sanctioned.",
-      location: "MOUZA - CHICHOLI",
+      location: "MOUZA - FETRI",
       status: "ongoing"
     },
     {

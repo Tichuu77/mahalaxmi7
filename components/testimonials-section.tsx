@@ -282,7 +282,7 @@ export   function TestimonialsSection() {
         {/* Trust Indicators */}
         <div className="mt-12 md:mt-16 grid grid-cols-3 gap-4 md:gap-8 max-w-3xl mx-auto">
           {[
-            { value: "500+", label: "Happy Clients" },
+            { value: "17000+", label: "Happy Clients" },
             { value: "5.0", label: "Average Rating" },
             { value: "100%", label: "Satisfaction" }
           ].map((stat, index) => (

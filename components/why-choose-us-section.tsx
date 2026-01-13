@@ -28,14 +28,14 @@ const reasons = [
     icon: Heart,
     title: "Customer Focused",
     description: "Your satisfaction is our top priority always",
-    stat: "500+",
+    stat: "17000+",
     statLabel: "Happy Clients"
   },
   {
     icon: Lightbulb,
     title: "Creative Solutions",
     description: "Tailored approaches for unique challenges",
-    stat: "1000+",
+    stat: "67+",
     statLabel: "Projects"
   },
   {

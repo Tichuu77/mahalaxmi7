@@ -1,46 +1,95 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import { ArrowRight, MapPin, Award, TrendingUp, Phone, Building2, Users, CheckCircle, Sparkles } from "lucide-react"
+import { useEffect, useState } from "react"
+import { ArrowRight, MapPin, Award, Phone, Building2, Users, CheckCircle, Sparkles } from "lucide-react"
 
 export default function HeroSection() {
-  const videoRef = useRef<HTMLDivElement>(null)
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
     setIsLoaded(true)
 
-    const script = document.createElement('script')
-    script.src = 'https://unpkg.com/cloudinary-video-player@1.10.6/dist/cld-video-player.min.js'
-    script.async = true
-    document.body.appendChild(script)
+    const swiperCSS = document.createElement('link')
+    swiperCSS.href = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css'
+    swiperCSS.rel = 'stylesheet'
+    document.head.appendChild(swiperCSS)
 
-    const link = document.createElement('link')
-    link.href = 'https://unpkg.com/cloudinary-video-player@1.10.6/dist/cld-video-player.min.css'
-    link.rel = 'stylesheet'
-    document.head.appendChild(link)
+    const swiperScript = document.createElement('script')
+    swiperScript.src = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js'
+    swiperScript.async = true
+    document.body.appendChild(swiperScript)
 
-    script.onload = () => {
-      if (window.cloudinary && videoRef.current) {
-        window.cloudinary.videoPlayer('cloudinary-player', {
-          cloud_name: 'dxujnm2sl',
-          publicId: 'Mahalaxmi_1_1_v6khvx',
-          controls: false,
-          autoplay: true,
+    swiperScript.onload = () => {
+      if (window.Swiper) {
+        new window.Swiper('.hero-swiper', {
           loop: true,
-          muted: true,
-          fluid: false,
-          playsinline: true,
-          bigPlayButton: false,
-          showLogo: false,
-          preload: 'auto',
+          autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+          },
+          effect: 'fade',
+          fadeEffect: {
+            crossFade: true
+          },
+          speed: 1000,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
         })
       }
     }
 
+    const style = document.createElement('style')
+    style.textContent = `
+      .hero-swiper .swiper-slide img {
+        filter: brightness(0.4);
+      }
+      .hero-swiper .swiper-button-next,
+      .hero-swiper .swiper-button-prev {
+        color: white !important;
+        background: rgba(255, 255, 255, 0.2);
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+        z-index: 50 !important;
+        cursor: pointer !important;
+      }
+      .hero-swiper .swiper-button-next:hover,
+      .hero-swiper .swiper-button-prev:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(1.1);
+      }
+      .hero-swiper .swiper-button-next::after,
+      .hero-swiper .swiper-button-prev::after {
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .hero-swiper .swiper-pagination-bullet {
+        background: white;
+        opacity: 0.5;
+        cursor: pointer !important;
+      }
+      .hero-swiper .swiper-pagination-bullet-active {
+        opacity: 1;
+        background: #f97316;
+      }
+      .hero-swiper .swiper-pagination {
+        z-index: 50 !important;
+      }
+    `
+    document.head.appendChild(style)
+
     return () => {
-      if (document.body.contains(script)) document.body.removeChild(script)
-      if (document.head.contains(link)) document.head.removeChild(link)
+      if (document.head.contains(swiperCSS)) document.head.removeChild(swiperCSS)
+      if (document.body.contains(swiperScript)) document.body.removeChild(swiperScript)
+      if (document.head.contains(style)) document.head.removeChild(style)
     }
   }, [])
 
@@ -49,28 +98,38 @@ export default function HeroSection() {
     if (element) element.scrollIntoView({ behavior: "smooth" })
   }
 
+  const slides = [
+    "/slider1.webp",
+    "/slider2.webp",
+    "/slider3.webp",
+    "/slider4.webp",
+    "/slider5.webp",
+    "/slider6.webp",
+  ]
+
   const locations = ['Besa', 'Beltarodi', 'Shankarpur', 'Wardha Road', 'Jamtha', 'Katol Road', 'Umred Road', 'Koradi Road', 'Samruddhi Circle']
 
   return (
     <section className="relative min-h-screen flex items-end overflow-hidden">
-      {/* Video Background */}
+      {/* Slider Background */}
       <div className="absolute inset-0 z-0">
-        <div ref={videoRef} className="w-full h-full">
-          <video
-            id="cloudinary-player"
-            className="cld-video-player"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              filter: 'brightness(0.80)'
-            }}
-          />
+        <div className="hero-swiper swiper w-full h-full">
+          <div className="swiper-wrapper">
+            {slides.map((slide, idx) => (
+              <div key={idx} className="swiper-slide">
+                <img
+                  src={slide}
+                  alt={`Mahalaxmi Developers ${idx + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
+          <div className="swiper-button-next"></div>
+          <div className="swiper-button-prev"></div>
+          <div className="swiper-pagination"></div>
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent pointer-events-none" />
       </div>
 
       {/* Floating Badge - Top Right */}
@@ -87,11 +146,11 @@ export default function HeroSection() {
       </div>
 
       {/* Main Content - Bottom Positioned */}
-      <div className="relative z-10 w-full pb-16 pt-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="relative z-10 w-full pb-16 pt-32 pointer-events-none">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 pointer-events-none">
           
           {/* Title Section - Diagonal Layout */}
-          <div className="mb-12">
+          <div className="mb-12 pointer-events-none">
             <div className={`transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
               <div className="inline-block transform -skew-x-6 bg-gradient-to-r from-primary to-secondary px-8 py-3 mb-6">
                 <h2 className="text-primary text-sm font-bold uppercase tracking-widest skew-x-6">
@@ -114,7 +173,7 @@ export default function HeroSection() {
           </div>
 
           {/* Three Column Info Grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8 pointer-events-auto">
             
             {/* Special Offer - Spans 2 on large screens */}
             <div className={`lg:col-span-2 bg-gradient-to-br from-secondary to-secondary/80 rounded-3xl p-8 shadow-2xl border border-white/20 transition-all duration-1000 delay-200 hover:scale-[1.02] ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
@@ -146,14 +205,14 @@ export default function HeroSection() {
                 <div className="flex items-center gap-3">
                   <Building2 className="w-5 h-5 text-tcol" />
                   <div>
-                    <div className="text-3xl font-black text-tcol">15+</div>
+                    <div className="text-3xl font-black text-tcol">67+</div>
                     <div className="text-xs text-primary/70">Completed Projects</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
                   <Users className="w-5 h-5 text-tcol" />
                   <div>
-                    <div className="text-3xl font-black text-tcol">500+</div>
+                    <div className="text-3xl font-black text-tcol">17000+</div>
                     <div className="text-xs text-primary/70">Satisfied Families</div>
                   </div>
                 </div>
@@ -194,7 +253,7 @@ export default function HeroSection() {
           </div>
 
           {/* CTA Buttons Row */}
-          <div className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-1000 delay-500 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
+          <div className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-1000 delay-500 pointer-events-auto ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
             <button 
               onClick={() => handleScrollToSection("contact")}
               className="group bg-primary hover:bg-primary/90 text-foreground px-10 py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 shadow-2xl transition-all duration-300 hover:scale-105"
@@ -223,8 +282,6 @@ export default function HeroSection() {
 
 declare global {
   interface Window {
-    cloudinary: {
-      videoPlayer: (elementId: string, options: any) => any;
-    };
+    Swiper: any;
   }
 }
