@@ -27,7 +27,7 @@ export default function AboutSection() {
   }, [])
 
   const animateCounters = () => {
-    const targets = { projects: 67, clients: 17000, years: 20, sqft: 500 }
+    const targets = { projects: 67, clients: 17000, years: 13, sqft: 500 }
     const duration = 2000
     const steps = 60
     const increment = duration / steps
@@ -143,7 +143,7 @@ export default function AboutSection() {
             {/* Description */}
             <div className="space-y-4">
               <p className="text-base sm:text-lg text-primary leading-relaxed">
-                With over <span className="text-secondary font-semibold">20 years of excellence</span> in real estate, Mahalaxmi Infra has established itself as a trusted name in Nagpur. We specialize in creating premium residential and commercial properties that combine quality, location, and value.
+                With over <span className="text-secondary font-semibold">13 years of excellence</span> in real estate, Mahalaxmi Infra has established itself as a trusted name in Nagpur. We specialize in creating premium residential and commercial properties that combine quality, location, and value.
               </p>
               <p className="text-base sm:text-lg text-primary leading-relaxed">
                 Our commitment to transparency, legal compliance, and customer satisfaction has helped over 1000 families find their dream properties across Nagpur's prime locations.

@@ -7,7 +7,7 @@ const reasons = [
     icon: Trophy,
     title: "Proven Excellence",
     description: "Award-winning solutions trusted by industry leaders",
-    stat: "10+",
+    stat: "13+",
     statLabel: "Years"
   },
   {
@@ -49,7 +49,7 @@ const reasons = [
 
 const achievements = [
   { icon: Award, label: "Industry Awards", value: "15+" },
-  { icon: Shield, label: "Years Experience", value: "10+" },
+  { icon: Shield, label: "Years Experience", value: "13+" },
   { icon: Star, label: "Client Rating", value: "4.9/5" },
   { icon: TrendingUp, label: "Growth Rate", value: "200%" },
 ]
