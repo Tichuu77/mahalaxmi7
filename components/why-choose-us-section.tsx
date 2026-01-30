@@ -195,7 +195,7 @@ export   function WhyChooseUsSection() {
               </div>
               
               <ul className="space-y-3 md:space-y-4">
-                {["10+ years industry experience", "500+ satisfied clients", "Industry-leading satisfaction rate"].map((benefit) => (
+                {["13+ years industry experience", "17000+ satisfied clients", "Industry-leading satisfaction rate"].map((benefit) => (
                   <li key={benefit} className="flex items-start gap-3">
                     <div className="w-6 h-6 md:w-7 md:h-7 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <Check className="w-4 h-4 md:w-5 md:h-5 text-primary" />
